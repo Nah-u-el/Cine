@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/mdb.min.css">
+<!-- Plugin file -->
+<link rel="stylesheet" href="./css/addons/datatables.min.css">
+<link rel="stylesheet" href="css/style.css">
+<title>Cine</title>
+</head>
+<script type="text/javascript">
+  function confirmar(){
+    var respuesta = confirm("Esta seguro de eliminar este Artista");
+    if (respuesta == true){
+      return  true;
+    } else {
+      return  false;
+    }
+  }
+</script>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+	<a class="navbar-brand" href="./listadoArtista.php">Cine - Listado</a>
+	<form name="form1" action="./listadoArtista.php" method="post" class="form-inline my-2 my-lg-0 ml-auto">
+	  <input type="text" name="ar_nombre" id="ar_nombre" value="{ar_nombre}" class="form-control" placeholder="Buscar Artista" aria-label="Search">
+	  <input type="submit" name="botonBuscar" value="Buscar" class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3"></input>
+	</form>
+  </nav>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+		  <th class="th-sm"><strong>#ID</strong></th>
+		  <th class="th-sm"><strong>Nombre</strong></th>
+      <th class="th-sm"><strong>Apellido</strong></th>
+      <th class="th-sm"><strong>DNI</strong></th>
+      <th class="th-sm"><strong>MAIL</strong></th>
+		  <th><a href="./nuevoArtista.php" target="_self" class="fas fa-plus-circle" style="margin-left: 10px;"></a>
+			<i class="fas fa-arrow-circle-left fa-lg" onclick="javascript:window.location.href = './index.html';" style='float: right'>&nbspMenú</i></th>
+        </tr>
+    </thead>
+	<!-- START BLOCK : listado -->
+	<tbody>
+	<tr>
+	<td>{id_artista}</td>
+	<td>{ar_nombre}</td>
+  <td>{ar_apellido}</td>
+  <td>{ar_dni}</td>
+  <td>{ar_mail}</td>
+	<td>
+		<a href='./eliminarArtista.php?id_artista={id_artista}&hash={hash}' target='_self' >
+			<i class="far fa-trash-alt" title='Eliminar Artista' onclick="return confirmar()"></i></a>
+			&nbsp<a href='./editarArtista.php?id_artista={id_artista}&hash={hash}' target='_self'>
+			<i class="far fa-edit" title='Editar Artista' ></i></a>
+	</td>
+	</tr>
+
+	<!-- END BLOCK : listado -->
+  <!-- START BLOCK : no_resultado -->
+                <tr><td colspan=10 align='center'> No hay genero </td><tr>
+  <!-- END BLOCK : no_resultado -->
+  <!-- START BLOCK : mensaje -->
+                <tr><td colspan=10 align='center'> Error {mensaje_tipo} </td><tr>
+  <!-- END BLOCK : mensaje -->
+
+</table>
+
+<br/>
+<br/>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- Plugin file -->
+<script src="./js/addons/datatables.min.js"></script>
+</tbody>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/mdb.min.css">
+<!-- Plugin file -->
+<link rel="stylesheet" href="./css/addons/datatables.min.css">
+<link rel="stylesheet" href="css/style.css">
+<title>Cine</title>
+<script type="text/javascript">
+  function sololetras(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toString();
+    letras =" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTUVWXYZÁáÉéÍíÓóÚú";
+    especiales = [8,13];
+    tecla_especial= false;
+    for (var i in especiales){
+      if (key == especiales[i]){
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if(letras.indexOf(tecla) == -1 && !tecla_especial){
+      alert('Solo ingrese letras');
+      return false;
+    }
+  }
+</script>
+<script type="text/javascript">
+  function actualizar(){
+    var respuesta = confirm("Esta seguro que desea actualizar este Director?");
+    if (respuesta == true){
+      return true;
+    }else {
+      return false;
+    }
+  }
+</script>
+<style>
+.obligatorio{
+	border-color: #FF0000;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+		<a class="navbar-brand" href="#">Cine - Editar Director</a>
+    </nav>
+	<div>
+<!-- START BLOCK : editar -->
+<table class="table">
+	<form name="form1" action="./actualizarDirector.php" method="post">
+	<caption>
+		<div><font color="#FF0000"><strong>* Complete el campo</strong></font></div>
+	</caption>
+		<tr>
+      <th class="th-sm"><strong>#ID:</strong>
+      <label>{id_director}</label>&nbsp&nbsp
+		  <strong>Director:</strong>
+      <input type="text" name="di_nombreArtistico" id="di_nombreArtistico" onkeypress="return sololetras(event)" onpaste="return false" value="{di_nombreArtistico}"/>
+		  <input type="submit" name="botonAceptar" value="Aceptar" class="btn btn-success btn-md my-2 my-sm-0 ml-3" onclick="return actualizar()"></input>
+		  <input type="reset" value="Limpiar Campo" class="btn btn-info btn-md my-2 my-sm-0 ml-3"></input>
+          <input type="hidden" name="hash" id="hash" class="obligatorio" value="{hash}" />
+		  <input type="hidden" name="id_director" id="id_director" class="obligatorio" value="{id_director}" />
+		</th>
+		<th><i class="fas fa-arrow-circle-left fa-lg" onclick="javascript:window.location.href = './listadoDirector.php';" style='float: right'>&nbspVolver</i></th>
+  </tr>
+</table>
+</div>
+  <!-- END BLOCK : editar -->
+</form>
+ <!-- START BLOCK : mensaje -->
+ <tr><td colspan=10 align='center'> <b>Error:</b> {mensaje_tipo} </td><tr>
+  <!-- END BLOCK : mensaje -->
+</body>
+</html>
